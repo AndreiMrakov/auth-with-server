@@ -1,0 +1,56 @@
+body, html, p, div, span {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*===============log, reg containers ==================*/
+.login-container, .reg-container, .user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container form, .reg-container form, .user-container form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+/*===============end containers===============*/
+/*===============nav panel==================*/
+.nav-panel {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.nav-panel a {
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #f5ca00;
+}
+
+.nav-panel a:hover {
+    background: #f5ca00;
+}
+
+.nav-panel a.active {
+    background: #f5ca00;
+}
+
+/*==================end nav=========================*/
+
+
+@font-face {
+    font-family: "fontawesome";
+    src: url("fonts/fontawesome/fa-regular-400.eot");
+    src: url("fonts/fontawesome/fa-regular-400.eot") format("embedded-opentype"),
+    url("fonts/fontawesome/fa-regular-400.woff2") format("woff2"),
+    url("fonts/fontawesome/fa-regular-400.woff") format("woff"),
+    url("fonts/fontawesome/fa-regular-400.ttf") format("truetype"),
+    url("fonts/fontawesome/fa-regular-400.svg") format("svg");
+}
