@@ -213,7 +213,7 @@
       <workItem from="1557066952280" duration="5053000" />
       <workItem from="1557147373772" duration="41054000" />
       <workItem from="1557326157419" duration="20161000" />
-      <workItem from="1557349084988" duration="1101000" />
+      <workItem from="1557349084988" duration="1739000" />
     </task>
     <task id="LOCAL-00001" summary="create login reg and profile components">
       <created>1556678654829</created>
@@ -226,11 +226,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100843000" />
+    <option name="totallyTimeSpent" value="101481000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="33" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
