@@ -3,8 +3,8 @@ let fs = require('fs');
 let app = express();
 let PORT = 8080;
 
-let users = require('./users.json');
-let onlineUsers = require('./onlineUsers.json');
+let users = require(`${__dirname}/users.json`);
+let onlineUsers = require(`${__dirname}/onlineUsers.json`);
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -50,7 +50,7 @@ app.post('/login', (req, res) => {
             onlineUsers.forEach((user) => {
                 if (user !== req.headers.email) {
                     onlineUsers.push(req.headers.email);
-                    fs.writeFileSync('./onlineUsers.json', JSON.stringify(onlineUsers));
+                    fs.writeFileSync(`${__dirname}/onlineUsers.json`, JSON.stringify(onlineUsers));
                     isLoggedIn = true;
                 } else {
                     isLoggedIn = false;
@@ -58,12 +58,12 @@ app.post('/login', (req, res) => {
             });
         } else {
             onlineUsers.push(req.headers.email);
-            fs.writeFileSync('./onlineUsers.json', JSON.stringify(onlineUsers));
+            fs.writeFileSync(`${__dirname}/onlineUsers.json`, JSON.stringify(onlineUsers));
             isLoggedIn = true;
         }
     }
 
-    if (accessTrigger && isLoggedIn) {
+    if (accessTrigger) {
         console.log(`User ${req.headers.email} logging in.`);
         res.send(users[userId]);
     } else {
@@ -76,7 +76,7 @@ app.post('/logout', (req, res) => {
         if (user === req.headers.email) {
             onlineUsers.splice(index, 1);
             if (onlineUsers.length <= 0) {
-                fs.writeFileSync('./onlineUsers.json', '[]');
+                fs.writeFileSync(`${__dirname}/onlineUsers.json`, '[]');
             } else fs.writeFileSync('./onlineUsers.json', onlineUsers);
             console.log(`User ${req.headers.email} logged out.`);
             res.send(`User ${req.headers.email} logged out.`);
@@ -96,7 +96,7 @@ app.post('/add', (req, res) => {
             address: ''
         };
         users.push(newUser);
-        fs.writeFileSync('./users.json', JSON.stringify(users));
+        fs.writeFileSync(`${__dirname}/users.json`, JSON.stringify(users));
         res.send(newUser);
     } else res.status(400).send(`User ${req.headers.email} exists already.`);
 });
@@ -114,12 +114,12 @@ app.post('/update', (req, res) => {
                     "address": req.headers.address
                 };
                 users.splice(i, 1, updatedUser);
-                fs.writeFileSync('./users.json', JSON.stringify(users));
+                fs.writeFileSync(`${__dirname}/users.json`, JSON.stringify(users));
                 res.send(updatedUser);
                 break;
             }
         }
-    } else res.status(400).send(res.statusText);
+    } else res.status(400).send('access denied');
 });
 
 app.listen(PORT, () => console.log(`Server starts on port ${PORT}.`));

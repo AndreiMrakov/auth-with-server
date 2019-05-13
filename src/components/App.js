@@ -28,7 +28,6 @@ class App extends React.Component {
         this.setState({user: {email: '', pass: ''}, isLogged: false});
     }
 
-
     render() {
         return (
             <Router history={History}>

@@ -40,13 +40,18 @@ class Profile extends React.Component {
 
         updateProfile('http://localhost:8080/update', user).then(res => {
             this.setState({email: res.email, oldName: res.name, newName: '', oldPhone: res.phone, newPhone: '', oldAddress: res.address, newAddress: ''});
-        }).catch(rej => alert(rej));
+        }).catch(rej => {
+            this.props.logOut();
+            this.props.history.push('/login');
+            alert(rej);
+        });
     }
 
     logoutUser() {
         logOut('http://localhost:8080/logout', this.state.email).then(req => {
-            alert(req);
+            localStorage.clear();
             this.props.logOut();
+            alert(req);
             this.props.history.push('/login');
         }).catch(rej => alert(rej));
     }
